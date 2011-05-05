@@ -12,23 +12,24 @@ def mkemail(email):
 	return email[:atpos]+'.'+email[atpos+1:]+'.'
 
 def gencfgline(domain, type, record):
+	dpad = domain.ljust(30)
 	if type == 'NS':
-		return domain+" IN NS     "+record.text
+		return dpad+" IN NS     "+record.text
 	elif type == 'MX':
-		return domain+" IN MX     "+record.options['preference']+" "+\
+		return dpad+" IN MX     "+record.options['preference']+" "+\
 		       record.text
 	elif type == 'A':
 		if record.ip:
-			return domain+" IN A      "+record.ip
+			return dpad+" IN A      "+record.ip
 		else:
 			return "; ("+domain+") no ipv4 address for "+record.text
 	elif type == 'AAAA':
 		if record.ip6:
-			return domain+" IN AAAA   "+record.ip6
+			return dpad+" IN AAAA   "+record.ip6
 		else:
 			return "; ("+domain+") no ipv6 address for "+record.text
 	elif type == 'TXT':
-		return domain+" IN TXT    "+record.text
+		return dpad+" IN TXT    "+record.text
 
 cfg = config.load_config(open(sys.argv[1], 'rb'));
 o = cfg.options

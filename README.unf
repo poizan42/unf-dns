@@ -1,0 +1,9 @@
+1. lav ændringer i unf.conf
+2. ./genconf.py unf.conf > db.unf.dk
+3. sudo cp db.unf.dk /etc/bind/zones/master
+4. sudo /etc/init.d/named restart
+5. log ind på gratisdns
+6. Primær DNS -> find unf.dk -> Ændre DNS -> Importer DNS fra AXFR
+7. IP: 130.225.102.169. Tryk importer
+8. ???
+9. Profit!
