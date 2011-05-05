@@ -63,7 +63,13 @@ for r in cfg.records:
 					if p == '@':
 						domains.append(v)
 					else:
-						domains.append(p+v)
+						if v == '@' and p[-1] == '.':
+							domains.append(p[0:-1])
+						elif v == '@':
+							print '; invalid non subdomain prefix "'+p+'"'
+							continue
+						else:
+							domains.append(p+v)
 			else:
 				domains = [v]
 			for d in domains:
